@@ -1,0 +1,21 @@
+.konstructor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 562px;
+    border: 1px solid gold;
+}
+
+.element{
+   display: flex;
+   align-items: center;
+}
+
+.element-bulka {}
+
+.itogi{
+    display: flex;
+    justify-content: end;
+    width: 562px;
+    align-items: center;
+}
