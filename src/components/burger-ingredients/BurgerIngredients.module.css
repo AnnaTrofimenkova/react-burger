@@ -1,20 +1,38 @@
+
 .main{
-    width: 600px;
+    width: 600px;  
 }
 
+.mainPannel{
+    overflow-y: scroll;
+    height: 686px;
+    
+}
+.mainPannel::-webkit-scrollbar {
+    width: 8px;
+    background-color: #f9f9fd;
+}
 
+.mainPannel::-webkit-scrollbar-thumb {
+    background-color:  #8585AD;;
+}
+
+.mainPannel::-webkit-scrollbar-track {
+    background-color: #1C1C21;;
+}
 .items{
     display: flex;
-    border: 1px solid goldenrod;
+    width: 536px;
+    justify-content: space-between;
 }
 
 .item{
     width: 240px;
-    border: 1px solid green;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .img{

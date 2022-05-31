@@ -1,72 +1,71 @@
 import { CurrencyIcon, DeleteIcon, DragIcon,  ConstructorElement, Button, Typography, Box } from '@ya.praktikum/react-developer-burger-ui-components'
 import BurgerConstructorStyles from '../burger-constructor/BurgerConstructor.module.css'
+import PropTypes from 'prop-types';
 
-import bulka from '../../images/bun-02.png'
-import sous from '../../images/sauce-03.png'
-import maso from '../../images/meat-02.png'
-import plod from '../../images/sp-1.png'
-import kolca from '../../images/mineral-rings.png'
-
-function BurgerConstructor() {
+function BurgerConstructor(props) {
   return (
+
+
     <div>
       <div className={`${BurgerConstructorStyles.konstructor} mt-25 mb-10`}>
            <div className={`${BurgerConstructorStyles.element} pl-8`}>
     <ConstructorElement 
         type="top"
         isLocked={true}
-        text="Краторная булка N-200i (верх)"
-        price={20}
-        thumbnail={bulka}
+        text={props[0].name + ' (верх)'}
+        price={props[0].price}
+        thumbnail={props[0].image} 
               />
-              </div>
+        </div>
+        <div className={`${BurgerConstructorStyles.elementVar} mt-4`}>
           <div className={`${BurgerConstructorStyles.element} mt-4`}>
         <DragIcon/>
         <ConstructorElement
-        text="Соус традиционный галактический"
-        price={30}
-        thumbnail={sous}/>
+        text={props[5].name}
+        price={props[5].price}
+        thumbnail={props[5].image} />
           </div>
-            <div className={`${BurgerConstructorStyles.element} mt-4`}>
+        <div className={`${BurgerConstructorStyles.element} mt-4`}>
         <DragIcon/>
-               <ConstructorElement
-        text="Мясо бессмертных моллюсков Protostomia"
-        price={300}
-        thumbnail={maso}
+        <ConstructorElement
+        text={props[4].name}
+        price={props[4].price}
+        thumbnail={props[4].image}
         
               />
           </div >
-              <div className={`${BurgerConstructorStyles.element} mt-4`}>
+        <div className={`${BurgerConstructorStyles.element} mt-4`}>
         <DragIcon/>
-               <ConstructorElement
-        text="Плоды Фалленианского дерева"
-        price={80}
-         thumbnail={plod}
+        <ConstructorElement
+        text={props[7].name}
+        price={props[7].price}
+         thumbnail={props[7].image}
               />
           </div>
             <div className={`${BurgerConstructorStyles.element} mt-4`}>
         <DragIcon/>
                <ConstructorElement
-        text="Хрустящие минеральные кольца"
-        price={80}
-         thumbnail={kolca}
+        text={props[8].name}
+        price={props[8].price}
+         thumbnail={props[8].image}
               />
           </div>
            <div className={`${BurgerConstructorStyles.element} mt-4`}>
         <DragIcon/>
                <ConstructorElement
-        text="Хрустящие минеральные кольца"
-        price={80}
-         thumbnail={kolca}
+        text={props[8].name}
+        price={props[8].price}
+         thumbnail={props[8].image}
               />
+          </div>
           </div>
           <div className={`${BurgerConstructorStyles.element} mt-4 pl-8`}>
           <ConstructorElement
         type="bottom"
         isLocked={true}
-        text="Краторная булка N-200i (низ)"
-        price={20}
-        thumbnail={bulka}
+         text={props[0].name + ' (низ)'}
+        price={props[0].price}
+        thumbnail={props[0].image} 
           />
         </div>  
           </div>
@@ -76,8 +75,15 @@ function BurgerConstructor() {
           <Button>Оформить заказ</Button>
        
           </div>
-             </div>
+      </div>
+      // </>
   );
 }
+
+BurgerConstructor.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+   price: PropTypes.number
+};
 
 export default BurgerConstructor;

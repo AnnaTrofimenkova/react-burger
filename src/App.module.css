@@ -1,5 +1,16 @@
+
+.page{
+  margin: 40px;
+  padding-left: 320px;
+      padding-right: 320px;
+}
+
+
 .cont_for_main{
   display: flex;
+  justify-content: center;
+  width: 1232px;
+  margin: 0 auto;
 }
 
 /* .App {
