@@ -1,46 +1,48 @@
-
-.main{
-    width: 600px;  
+.main {
+  width: 600px;
 }
 
-.mainPannel{
-    overflow-y: scroll;
-    height: 686px;
-    
+.mainPannel {
+  overflow-y: scroll;
+  height: 686px;
 }
 .mainPannel::-webkit-scrollbar {
-    width: 8px;
-    background-color: #f9f9fd;
+  width: 8px;
+  background-color: #f9f9fd;
 }
 
 .mainPannel::-webkit-scrollbar-thumb {
-    background-color:  #8585AD;;
+  background-color: #8585ad;
 }
 
 .mainPannel::-webkit-scrollbar-track {
-    background-color: #1C1C21;;
+  background-color: #1c1c21;
 }
-.items{
-    display: flex;
-    width: 536px;
-    justify-content: space-between;
-}
-
-.item{
-    width: 240px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  width: 536px;
+  justify-content: space-between;
 }
 
-.img{
-    width: 240px;
-    height: 120px;
+.tab {
+  display: flex;
+}
+.item {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.cena{
-    display: flex;
-    align-items: center;
+.img {
+  width: 240px;
+  height: 120px;
+}
+
+.cena {
+  display: flex;
+  align-items: center;
 }

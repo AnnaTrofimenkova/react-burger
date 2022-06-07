@@ -1,24 +1,19 @@
-.header{
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-   
-   
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.konstLenta{
-    display: flex;
-    
+.konstLenta {
+  display: flex;
 }
-.konstructor{
-    display: flex;
+.konstructor {
+  display: flex;
 }
 
 .lenta {
-    display: flex;
-   
+  display: flex;
 }
 
 .kabynet {
-    display: flex;
-    
+  display: flex;
 }

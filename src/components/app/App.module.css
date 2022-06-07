@@ -1,12 +1,9 @@
-
-.page{
-  margin: 40px;
-  padding-left: 320px;
-      padding-right: 320px;
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
-
-.cont_for_main{
+.cont_for_main {
   display: flex;
   justify-content: center;
   width: 1232px;
