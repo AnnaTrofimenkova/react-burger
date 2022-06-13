@@ -10,18 +10,20 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerIngredientsStyles from "../burger-ingredients/BurgerIngredients.module.css";
 import { burgerIngredientsPropTypes } from "../../utils/types";
+import Modal from "../modal/Modal";
+import IngredientDetails from "../ingredientDetails/IngredientDetails";
 
 function BurgerIngredients(props) {
   const [current, setCurrent] = useState("Булки");
 
+  const [isOpened, setIsOpened] = useState(false);
+  function toggleModal(props) {
+    setIsOpened(props);
+  }
+
   return (
     <div className={`${BurgerIngredientsStyles.main} mr-10`}>
       <h1>Соберите бурегр</h1>
-      {props.data.map((item) =>
-        item.type === "bun" ? console.log(item.name) : console.log("")
-      )}
-
-      {/* {console.log(props.data[0].name)} */}
       <div className={`${BurgerIngredientsStyles.tab} mb-10`}>
         <Tab value="Булки" active={current === "Булки"} onClick={setCurrent}>
           Булки
@@ -43,7 +45,13 @@ function BurgerIngredients(props) {
           <div className={BurgerIngredientsStyles.items}>
             {props.data.map((props) =>
               props.type === "bun" ? (
-                <div className={BurgerIngredientsStyles.item} key={props._id}>
+                <div
+                  className={BurgerIngredientsStyles.item}
+                  key={props._id}
+                  onClick={() => {
+                    toggleModal(props);
+                  }}
+                >
                   <img
                     className={BurgerIngredientsStyles.img}
                     src={props.image}
@@ -69,7 +77,13 @@ function BurgerIngredients(props) {
           <div className={BurgerIngredientsStyles.items}>
             {props.data.map((props) =>
               props.type === "sauce" ? (
-                <div className={BurgerIngredientsStyles.item} key={props._id}>
+                <div
+                  className={BurgerIngredientsStyles.item}
+                  key={props._id}
+                  onClick={() => {
+                    toggleModal(props);
+                  }}
+                >
                   <img
                     className={BurgerIngredientsStyles.img}
                     src={props.image}
@@ -95,7 +109,13 @@ function BurgerIngredients(props) {
           <div className={BurgerIngredientsStyles.items}>
             {props.data.map((props) =>
               props.type === "main" ? (
-                <div className={BurgerIngredientsStyles.item} key={props._id}>
+                <div
+                  className={BurgerIngredientsStyles.item}
+                  key={props._id}
+                  onClick={() => {
+                    toggleModal(props);
+                  }}
+                >
                   <img
                     className={BurgerIngredientsStyles.img}
                     src={props.image}
@@ -117,6 +137,11 @@ function BurgerIngredients(props) {
           </div>
         </section>
       </div>
+      {isOpened && (
+        <Modal onClose={toggleModal} title={"Детали ингредиента"}>
+          <IngredientDetails item={isOpened} />
+        </Modal>
+      )}
     </div>
   );
 }
