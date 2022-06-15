@@ -1,6 +1,7 @@
 import IngredientDetailsCSS from "./IngredientDetails.module.css";
 
 import PropTypes from "prop-types";
+import { burgerIngredientsPropTypes } from "../../utils/types";
 
 function IngredientDetails(props) {
   return (
@@ -61,12 +62,5 @@ function IngredientDetails(props) {
 export default IngredientDetails;
 
 IngredientDetails.propTypes = {
-  props: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    calories: PropTypes.number.isRequired,
-    proteins: PropTypes.number.isRequired,
-    fat: PropTypes.number.isRequired,
-    carbohydrates: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-  }),
+  item: PropTypes.arrayOf(burgerIngredientsPropTypes).isRequired,
 };

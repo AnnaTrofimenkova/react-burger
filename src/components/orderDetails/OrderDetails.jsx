@@ -3,9 +3,9 @@ import galka from "../../images/galka.png";
 function OrderDetails() {
   return (
     <>
-      <div className={`text text_type_digits-large`}>6664269</div>
+      <div className={`text text_type_digits-large mt-10`}>6664269</div>
       <p className={`text text_type_main-medium mt-8`}>идентификатор заказа</p>
-      <div className={`mt-15 mb-15`}>
+      <div className={`mt-15`}>
         <img src={galka} alt="готовим заказ" />
       </div>
       <p className={`text text_type_main-default`}>Ваш заказ начали готовить</p>

@@ -1,8 +1,10 @@
 .image {
-  max-height: 240px;
-  max-width: 480px;
+  height: 240px;
+  width: 480px;
   object-fit: cover;
   object-position: center;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .list {

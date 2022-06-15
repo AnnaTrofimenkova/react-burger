@@ -34,17 +34,17 @@ function Modal(props) {
             className={`${ModalStyles.popup__header} text text_type_main-large mb-4`}
           >
             <span>{props.title}</span>
-            <span
-              className={ModalStyles.popup__close}
-              onClick={() => {
-                props.onClose(false);
-              }}
-            >
-              <CloseIcon type="primary" />
-            </span>
           </div>
           <div className={ModalStyles.popup__content}>{props.children}</div>
         </div>
+        <span
+          className={ModalStyles.popup__close}
+          onClick={() => {
+            props.onClose(false);
+          }}
+        >
+          <CloseIcon type="primary" />
+        </span>
       </div>
     </>,
     modalRoot
@@ -53,8 +53,8 @@ function Modal(props) {
 
 export default Modal;
 
-// Modal.propTypes = {
-//   title: PropTypes.string,
-//   children: PropTypes.node.isRequired,
-//   onClose: PropTypes.func.isRequired,
-// };
+Modal.propTypes = {
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
+};

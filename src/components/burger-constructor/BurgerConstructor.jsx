@@ -38,6 +38,8 @@ function BurgerConstructor(props) {
                 key={props._id}
               >
                 <ConstructorElement
+                  type="top"
+                  isLocked={true}
                   text={props.name + " (верх)"}
                   price={props.price}
                   thumbnail={props.image}
@@ -75,6 +77,8 @@ function BurgerConstructor(props) {
                 key={props._id}
               >
                 <ConstructorElement
+                  type="bottom"
+                  isLocked={true}
                   text={props.name + " (низ)"}
                   price={props.price}
                   thumbnail={props.image}
