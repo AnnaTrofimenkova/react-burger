@@ -24,6 +24,7 @@ function BurgerConstructor() {
 
   function toggleModal() {
     setIsOpened(!isOpened);
+    getDataOrderId();
   }
   useEffect(() => {
     let total = 0;
@@ -51,7 +52,26 @@ function BurgerConstructor() {
   // получаем карточки с сервера useeffect
   const [idOder, setIdOder] = useState(); //новый месяц
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const getProductData = async (array) => {
+  //     try {
+  //       const res = await fetch(config.baseUrl, {
+  //         method: "POST",
+  //         headers: config.headers,
+  //         body: JSON.stringify({
+  //           ingredients: array,
+  //         }),
+  //       });
+  //       console.log(array);
+  //       const data = await res.json();
+  //       setIdOder(data.order.number);
+  //     } catch (error) {
+  //       console.log("ошибка");
+  //     }
+  //   };
+  //   getProductData(idArray);
+  // }, [isOpened]);
+  const getDataOrderId = () => {
     const getProductData = async (array) => {
       try {
         const res = await fetch(config.baseUrl, {
@@ -61,7 +81,7 @@ function BurgerConstructor() {
             ingredients: array,
           }),
         });
-        console.log(array);
+        // console.log(array);
         const data = await res.json();
         setIdOder(data.order.number);
       } catch (error) {
@@ -69,8 +89,7 @@ function BurgerConstructor() {
       }
     };
     getProductData(idArray);
-  }, [isOpened]);
-
+  };
   // получаем карточки с сервера
   // let oderResult = async function getOderNumber(array) {
   //   const res = await fetch(config.baseUrl, {
@@ -142,7 +161,7 @@ function BurgerConstructor() {
         <div className={`${BurgerConstructorStyles.element} pl-8`}>
           {state.map((stateItem) =>
             stateItem.type === "bun" && count == 0 ? (
-              <div>
+              <div key={stateItem._id}>
                 {console.log(count++)}
                 <div
                   className={`${BurgerConstructorStyles.element} mt-4`}
