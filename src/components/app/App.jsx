@@ -5,6 +5,8 @@ import BurgerIngredients from "../burger-ingredients/BurgerIngredients.jsx";
 import BurgerConstructor from "../burger-constructor/BurgerConstructor.jsx";
 import { useState } from "react";
 import Modal from "../modal/Modal";
+import { useContext } from "react"; //новый месяц
+import { BurgerData } from "../../services/appContext.js"; //новый месяц
 
 function App() {
   const baseUrl = "https://norma.nomoreparties.space/api/ingredients";
@@ -17,6 +19,7 @@ function App() {
           throw new Error(`Error status - ${res.status}`);
         }
         const DATA = await res.json();
+        // console.log(DATA);
         setState(DATA.data);
       } catch (error) {
         state([]);
@@ -24,13 +27,15 @@ function App() {
     };
     getData();
   }, []);
-  console.log(state);
+  // console.log(state);
   return (
     <div className={AppStyle.page}>
       <AppHeader />
       <div className={AppStyle.cont_for_main}>
         <BurgerIngredients data={state} />
-        <BurgerConstructor data={state} />
+        <BurgerData.Provider value={{ state, setState }}>
+          <BurgerConstructor />
+        </BurgerData.Provider>
       </div>
     </div>
   );

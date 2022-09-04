@@ -1,16 +1,13 @@
 import ModalStyles from "./Modal.module.css";
 import { useEffect } from "react";
-
 import { createPortal } from "react-dom";
-
 import ModalCSS from "./Modal.module.css";
 import ModalOverlay from "../modalOverlay/ModalOverlay";
-
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
 import PropTypes from "prop-types";
 
 function Modal(props) {
+  // console.log(props.user);
   const modalRoot = document.getElementById("root-modals");
 
   useEffect(() => {
