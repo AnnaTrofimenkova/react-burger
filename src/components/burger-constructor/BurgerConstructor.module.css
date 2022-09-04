@@ -1,0 +1,34 @@
+.konstructor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 562px;
+}
+.elementVar {
+  height: 384px;
+  overflow-y: scroll;
+}
+
+.elementVar::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f9f9fd;
+}
+
+.elementVar::-webkit-scrollbar-thumb {
+  background-color: #8585ad;
+}
+
+.elementVar::-webkit-scrollbar-track {
+  background-color: #1c1c21;
+}
+.element {
+  display: flex;
+  align-items: center;
+}
+
+.itogi {
+  display: flex;
+  justify-content: end;
+  width: 562px;
+  align-items: center;
+}

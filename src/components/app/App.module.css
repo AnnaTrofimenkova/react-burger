@@ -1,0 +1,11 @@
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.cont_for_main {
+  display: flex;
+  justify-content: center;
+  width: 1232px;
+  margin: 0 auto;
+}

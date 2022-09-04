@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.konstLenta {
+  display: flex;
+}
+.konstructor {
+  display: flex;
+}
+
+.lenta {
+  display: flex;
+}
+
+.kabynet {
+  display: flex;
+}
