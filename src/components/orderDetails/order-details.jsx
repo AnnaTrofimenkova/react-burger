@@ -1,12 +1,7 @@
 import galka from "../../images/galka.png";
 import PropTypes from "prop-types";
-// import { IdOrder } from "../../services/idOrder"; //новый месяц
-// import { useContext } from "react"; //новый месяц
 
 function OrderDetails(props) {
-  // const { number, setNumber } = useContext(IdOrder);
-  console.log(props.idOder);
-  let tesr = 5;
   return (
     <>
       <div className={`text text_type_digits-large mt-10`}>{props.idOder}</div>

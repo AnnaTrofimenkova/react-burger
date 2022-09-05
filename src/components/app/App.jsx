@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import AppStyle from "./App.module.css";
+import appStyle from "./App.module.css";
 import AppHeader from "../app-header/AppHeader.jsx";
 import BurgerIngredients from "../burger-ingredients/BurgerIngredients.jsx";
 import BurgerConstructor from "../burger-constructor/BurgerConstructor.jsx";
@@ -18,20 +18,18 @@ function App() {
         if (!res.ok) {
           throw new Error(`Error status - ${res.status}`);
         }
-        const DATA = await res.json();
-        // console.log(DATA);
-        setState(DATA.data);
+        const ingredientsResponse = await res.json();
+        setState(ingredientsResponse.data);
       } catch (error) {
         state([]);
       }
     };
     getData();
   }, []);
-  // console.log(state);
   return (
-    <div className={AppStyle.page}>
+    <div className={appStyle.page}>
       <AppHeader />
-      <div className={AppStyle.cont_for_main}>
+      <div className={appStyle.cont_for_main}>
         <BurgerIngredients data={state} />
         <BurgerData.Provider value={{ state, setState }}>
           <BurgerConstructor />

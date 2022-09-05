@@ -7,11 +7,11 @@ import {
   Typography,
   Box,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import BurgerConstructorStyles from "../burger-constructor/BurgerConstructor.module.css";
+import burgerConstructorStyles from "../burger-constructor/BurgerConstructor.module.css";
 import PropTypes from "prop-types";
 import { burgerIngredientsPropTypes } from "../../utils/types";
 import Modal from "../modal/Modal";
-import OrderDetails from "../orderDetails/OrderDetails";
+import OrderDetails from "../orderDetails/order-details";
 import { useState, useEffect, useRef } from "react";
 import { useContext } from "react"; //новый месяц
 import { BurgerData } from "../../services/appContext.js"; //новый месяц
@@ -20,16 +20,34 @@ import { BurgerData } from "../../services/appContext.js"; //новый меся
 function BurgerConstructor() {
   const [isOpened, setIsOpened] = useState(false);
   const { state, setState } = useContext(BurgerData); //новый месяц
-  const [totalPrice, setTotalPrice] = useState({}); //новый месяц
+  const [totalPrice, setTotalPrice] = useState(0); //новый месяц
 
   function toggleModal() {
     setIsOpened(!isOpened);
-    getDataOrderId();
+    isOpened ? console.log("NOsent") : getDataOrderId();
   }
   useEffect(() => {
+    let count = 0;
     let total = 0;
-    state.map((item) => (total += item.price));
-    setTotalPrice({ result: total, id: Date.now() });
+    let summBun = 0;
+    let summExceptBun = 0;
+    // state.map((item) => (total += item.price));
+
+    state.map((stateItem) =>
+      stateItem.type === "bun" && count == 0
+        ? ((summBun = stateItem.price * 2), count++)
+        : ""
+    );
+
+    state.map((stateItem) =>
+      stateItem.type === "sauce" || stateItem.type === "main"
+        ? (summExceptBun = summExceptBun += stateItem.price)
+        : ""
+    );
+
+    total = summBun + summExceptBun;
+
+    setTotalPrice(total);
   }, [state, setTotalPrice]);
 
   const config = {
@@ -38,39 +56,13 @@ function BurgerConstructor() {
       "Content-Type": "application/json",
     },
   };
-  // const checkResponse = (res) => {
-  //   return res.ok ? res.json() : Promise.reject(res);
-  // };
 
   //Получаем массив id
   let idArray = state.map((item) => item._id); //- работало
 
-  // let idArray = "60d3b41abdacab0026a733c6";
-  // idArray = state.map((item) => item._id);
-  // console.log(idArray);
-
   // получаем карточки с сервера useeffect
   const [idOder, setIdOder] = useState(); //новый месяц
 
-  // useEffect(() => {
-  //   const getProductData = async (array) => {
-  //     try {
-  //       const res = await fetch(config.baseUrl, {
-  //         method: "POST",
-  //         headers: config.headers,
-  //         body: JSON.stringify({
-  //           ingredients: array,
-  //         }),
-  //       });
-  //       console.log(array);
-  //       const data = await res.json();
-  //       setIdOder(data.order.number);
-  //     } catch (error) {
-  //       console.log("ошибка");
-  //     }
-  //   };
-  //   getProductData(idArray);
-  // }, [isOpened]);
   const getDataOrderId = () => {
     const getProductData = async (array) => {
       try {
@@ -81,7 +73,6 @@ function BurgerConstructor() {
             ingredients: array,
           }),
         });
-        // console.log(array);
         const data = await res.json();
         setIdOder(data.order.number);
       } catch (error) {
@@ -90,81 +81,25 @@ function BurgerConstructor() {
     };
     getProductData(idArray);
   };
-  // получаем карточки с сервера
-  // let oderResult = async function getOderNumber(array) {
-  //   const res = await fetch(config.baseUrl, {
-  //     method: "POST",
-  //     headers: config.headers,
-  //     body: JSON.stringify({
-  //       ingredients: array,
-  //     }),
-  //   });
-  //   return checkResponse(res);
-  // };
-
-  // let DATA = oderResult(idArray);
-  // let idOderResult = DATA.then(function (result) {
-  //   console.log(result.order.number); // "Some User token"
-  //   return result.order.number;
-  // });
-
-  // console.log(idOderResult);
-
-  //ассинхронный как в app
-  // const [idResult, setIdResult] = useState(""); //новый месяц
-  // useEffect(() => {
-  //   const oderResult = async (idArray) => {
-  //     try {
-  //       const res = await fetch(config.baseUrl, {
-  //         method: "POST",
-  //         headers: config.headers,
-  //         body: JSON.stringify({
-  //           ingredients: idArray,
-  //         }),
-  //       });
-  //       if (!res.ok) {
-  //         throw new Error(`Error status - ${res.status}`);
-  //       }
-  //       const DATA2 = await res.json();
-  //       setIdResult(DATA2.data);
-  //     } catch (error) {
-  //       idResult([]);
-  //     }
-  //   };
-  //   oderResult();
-  // }, []);
-
-  // console.log(idResult);
-  //ассинхронный как в app конец
-
-  // let a = fetch("https://anapioficeandfire.com/api/characters/583")
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //   });
-
-  // console.log(a);
 
   //HFCRJVVTYNBNM!!!
   let count = 0;
 
   return (
     <div>
-      <div className={`${BurgerConstructorStyles.konstructor} mt-25 mb-10`}>
+      <div className={`${burgerConstructorStyles.konstructor} mt-25 mb-10`}>
         {isOpened && (
           <Modal onClose={toggleModal} idOder={idOder}>
-            {/* <IdOrder.Provider value={{ count }}> */}
             <OrderDetails idOder={idOder} />
-            {/* </IdOrder.Provider> */}
           </Modal>
         )}
-        <div className={`${BurgerConstructorStyles.element} pl-8`}>
+        <div className={`${burgerConstructorStyles.element} pl-8`}>
           {state.map((stateItem) =>
             stateItem.type === "bun" && count == 0 ? (
               <div key={stateItem._id}>
                 {console.log(count++)}
                 <div
-                  className={`${BurgerConstructorStyles.element} mt-4`}
+                  className={`${burgerConstructorStyles.element} mt-4`}
                   key={stateItem._id}
                 >
                   <ConstructorElement
@@ -181,11 +116,11 @@ function BurgerConstructor() {
             )
           )}
         </div>
-        <div className={`${BurgerConstructorStyles.elementVar} mt-4`}>
+        <div className={`${burgerConstructorStyles.elementVar} mt-4`}>
           {state.map((state) =>
             state.type === "sauce" || state.type === "main" ? (
               <div
-                className={`${BurgerConstructorStyles.element} mt-4`}
+                className={`${burgerConstructorStyles.element} mt-4`}
                 key={state._id}
               >
                 <DragIcon />
@@ -200,20 +135,23 @@ function BurgerConstructor() {
             )
           )}
         </div>
-        <div className={`${BurgerConstructorStyles.element} mt-4 pl-8`}>
-          {state.map((state) =>
-            state.name === "Краторная булка N-200i" ? (
-              <div
-                className={`${BurgerConstructorStyles.element} mt-4`}
-                key={state._id}
-              >
-                <ConstructorElement
-                  type="bottom"
-                  isLocked={true}
-                  text={state.name + " (низ)"}
-                  price={state.price}
-                  thumbnail={state.image}
-                />
+        <div className={`${burgerConstructorStyles.element} mt-4 pl-8`}>
+          {state.map((stateItem) =>
+            stateItem.type === "bun" && count == 1 ? (
+              <div key={stateItem._id}>
+                {console.log(count++)}
+                <div
+                  className={`${burgerConstructorStyles.element} mt-4`}
+                  key={stateItem._id}
+                >
+                  <ConstructorElement
+                    type="bottom"
+                    isLocked={true}
+                    text={stateItem.name + " (низ)"}
+                    price={stateItem.price}
+                    thumbnail={stateItem.image}
+                  />
+                </div>
               </div>
             ) : (
               ""
@@ -221,11 +159,9 @@ function BurgerConstructor() {
           )}
         </div>
       </div>
-      <div className={BurgerConstructorStyles.itogi}>
-        <span className="text text_type_digits-medium mr-2" key={totalPrice.id}>
-          {totalPrice.result}
-        </span>
-        <div className=" mr-10">
+      <div className={burgerConstructorStyles.itogi}>
+        <span className="text text_type_digits-medium mr-2">{totalPrice}</span>
+        <div className="mr-10">
           <CurrencyIcon />
         </div>
         <Button onClick={toggleModal}>Оформить заказ</Button>
