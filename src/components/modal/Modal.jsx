@@ -1,16 +1,13 @@
-import ModalStyles from "./Modal.module.css";
+import modalStyles from "./Modal.module.css";
 import { useEffect } from "react";
-
 import { createPortal } from "react-dom";
-
 import ModalCSS from "./Modal.module.css";
 import ModalOverlay from "../modalOverlay/ModalOverlay";
-
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-
 import PropTypes from "prop-types";
 
 function Modal(props) {
+  // console.log(props.user);
   const modalRoot = document.getElementById("root-modals");
 
   useEffect(() => {
@@ -28,17 +25,17 @@ function Modal(props) {
   return createPortal(
     <>
       <ModalOverlay onClose={props.onClose} />
-      <div className={`${ModalStyles.popup} pt-10 pl-10 pr-10 pb-15`}>
+      <div className={`${modalStyles.popup} pt-10 pl-10 pr-10 pb-15`}>
         <div>
           <div
-            className={`${ModalStyles.popup__header} text text_type_main-large mb-4`}
+            className={`${modalStyles.popup__header} text text_type_main-large mb-4`}
           >
             <span>{props.title}</span>
           </div>
-          <div className={ModalStyles.popup__content}>{props.children}</div>
+          <div className={modalStyles.popup__content}>{props.children}</div>
         </div>
         <span
-          className={ModalStyles.popup__close}
+          className={modalStyles.popup__close}
           onClick={() => {
             props.onClose(false);
           }}
